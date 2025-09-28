@@ -1,0 +1,14 @@
+activity:
+  fn_type: ev_onehot
+  ev_onehot:
+    seq_len: 275
+    predictor:
+      data_path: data/round1/dry-lab/activity
+      predictor_name: ev+onehot
+    transform:
+      trans_type: sigmoid
+      low: -1
+      high: 2
+      params:
+        k: 1
+    min_val: -4

@@ -1,0 +1,29 @@
+# Description: Configuration file for training agent
+task:
+  task_type: activity
+  score_type: weight  # sum, weight, product, only useful for multi-property optimization
+
+template:
+  ref_seq_path: data/round1/dry-lab/activity/wt.fasta
+  hotspot_path: data/round1/dry-lab/hotspots/Subtilisin_BPN_hotspot.csv
+
+train:
+  max_seq_len: 275
+  batch_size: 90
+  n_steps: 3000
+  sigma: 60
+  device: cuda
+  n_devices: 2
+  precision: bf16-mixed
+  matmul_precision: high
+  save_per_n_steps: 100
+  seed: 42
+
+optim:
+  learning_rate: 0.0001
+  lr_decay: True
+  weight_decay: 0.1
+  beta_1: 0.9
+  beta_2: 0.95
+  grad_norm_clip: 1.0
+  
