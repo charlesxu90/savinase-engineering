@@ -1,6 +1,6 @@
 data:
-  train_data: data/round1/dry-lab/prior/subtilisin-train.csv
-  valid_data: data/round1/dry-lab/prior/subtilisin-test.csv
+  train_data: data/round1/prior/subtilisin-train.csv
+  valid_data: data/round1/prior/subtilisin-test.csv
   max_len: 478
   column: sequence
   batch_size: 128

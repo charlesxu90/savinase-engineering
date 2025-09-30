@@ -4,8 +4,8 @@ task:
   score_type: weight  # sum, weight, product, only useful for multi-property optimization
 
 template:
-  ref_seq_path: data/round1/dry-lab/activity/wt.fasta
-  hotspot_path: data/round1/dry-lab/hotspots/Subtilisin_BPN_hotspot.csv
+  ref_seq_path: data/round1/activity/wt.fasta
+  hotspot_path: data/round1/hotspots/Subtilisin_BPN_hotspot.csv
 
 train:
   max_seq_len: 275

@@ -3,7 +3,7 @@ activity:
   ev_onehot:
     seq_len: 275
     predictor:
-      data_path: data/round1/dry-lab/activity
+      data_path: data/round1/activity
       predictor_name: ev+onehot
     transform:
       trans_type: sigmoid
