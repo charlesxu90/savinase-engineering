@@ -1,0 +1,80 @@
+# Description: Configuration file for training agent
+task:
+  score_type: weight  # sum, weight, product, only useful for multi-property optimization
+  prop_names: ['activity', 'stability']
+
+  fn_config:
+    use_redis: False                  # use redis to store the model, default False
+    PLMEmbedder:
+      plm_type: prottrans               # esm or prottrans, default esm
+      plm_name: ProtT5-XL               # esm model names (e.g. esm1v_t33_650M_UR90S_1) or prottrans model names (ProtT5-XL, ProtAlert)
+      device: cuda:1                    # device to run the model on (cpu or cuda), default cuda
+    
+    activity:
+      fn_type: pLM
+      pLM:
+        seq_len: 269
+        predictor:
+          model_dir: data/round3/pred_models/activity/ProtT5-XL-svm-5/
+          head_type: svm                    # svm, knn,  or cnn, default svm
+        
+        transform:
+          trans_type: sigmoid
+          low: -1
+          high: 0
+          params:
+            k: 1
+        min_val: -4
+
+    stability:
+      fn_type: pLM
+      pLM:
+        seq_len: 269
+        predictor:
+          model_dir: data/round3/pred_models/stability/ProtT5-XL-svm-10/
+          head_type: svm                    # svm, knn,  or cnn, default svm
+
+        transform:
+          trans_type: sigmoid
+          low: -1
+          high: 1
+          params:
+            k: 1
+        min_val: -6
+
+bonus:
+  bonus_type: ip_free  # two types: ip_free, m2bonus or none
+  bonus_amplitude: 1
+  bonus_approach: product  # sum or product
+  bn_config: 
+    ip_free:
+      seq_len: 269
+      wt_path: data/round3/hotspots/savinase_bpn_pos.fa
+      rules_path: data/round2/patents/Patent-restricts-v4.3.xlsx
+    
+    m2bonus:
+
+template:
+  ref_seq_path: data/round3/hotspots/wt.fasta
+  hotspot_path: data/round3/hotspots/savinase_casein_hotspots.csv
+
+train:
+  max_seq_len: 269
+  batch_size: 30
+  n_steps: 3000
+  sigma: 60  # 100 or 60
+  device: cuda
+  n_devices: 2
+  precision: bf16-mixed
+  matmul_precision: high
+  save_per_n_steps: null  #100
+  seed: 42
+
+optim:
+  learning_rate: 0.0001
+  lr_decay: True
+  weight_decay: 0.1
+  beta_1: 0.9
+  beta_2: 0.95
+  grad_norm_clip: 1.0
+  

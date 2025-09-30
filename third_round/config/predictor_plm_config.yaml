@@ -1,0 +1,25 @@
+activity:
+  data:
+    data_dir: data/round3/pred_models/activity
+    train_size: 0.8
+    num_pca_components: 60
+
+  model1:
+    backbone_model: ProtT5-XL
+    head_model: svm
+    seed: 5
+    model_dir: data/round3/pred_models/activity/ProtT5-XL-svm-5
+    model_name: ProtT5-XL-svm-5
+
+stability:
+  data:
+    data_dir: data/round3/pred_models/stability
+    train_size: 0.8
+    num_pca_components: 60
+
+  model3:
+    backbone_model: ProtT5-XL
+    head_model: svm
+    seed: 10
+    model_dir: data/round3/pred_models/stability/ProtT5-XL-svm-10
+    model_name: ProtT5-XL-svm-10
