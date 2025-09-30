@@ -1,0 +1,49 @@
+# Description: Configuration file for training agent
+task:
+  score_type: weight  # sum, weight, product, only useful for multi-property optimization
+  prop_names: ['activity']
+  fn_config:
+    activity:
+      fn_type: ev_onehot
+      ev_onehot:
+        seq_len: 269
+        predictor:
+          data_path: data/round2/activity
+          predictor_name: ev+onehot
+        transform:
+          trans_type: sigmoid
+          low: 0
+          high: 2
+          params:
+            k: 1
+        min_val: -5
+
+template:
+  ref_seq_path: data/round2/hotspots/top_1st.fasta
+  # ref_seq_path: data/round2/hotspots/top_2nd.fasta
+  # ref_seq_path: data/round2/hotspots/top_3rd.fasta
+  # ref_seq_path: data/round2/hotspots/top_4th.fasta
+  # ref_seq_path: data/round2/hotspots/top_5th.fasta
+  # ref_seq_path: data/round2/hotspots/top_6th.fasta
+  hotspot_path: data/round2/hotspots/hotspots_R2.csv
+
+train:
+  max_seq_len: 269
+  batch_size: 60
+  n_steps: 3000
+  sigma: 60
+  device: cuda
+  n_devices: 2
+  precision: bf16-mixed
+  matmul_precision: high
+  save_per_n_steps: null  #100
+  seed: 42
+
+optim:
+  learning_rate: 0.0001
+  lr_decay: True
+  weight_decay: 0.1
+  beta_1: 0.9
+  beta_2: 0.95
+  grad_norm_clip: 1.0
+  

@@ -1,0 +1,26 @@
+activity:
+  data:
+    data_dir: data/round2/activity
+    train_size: 0.8
+    num_pca_components: 60
+
+  model1:
+    backbone_model: esm2_t36_3B_UR50D
+    head_model: mlp
+    seed: 12
+    model_dir: data/round2/activity/plm_models/esm2_t36_3B_UR50D-mlp-12
+    model_name: esm2_t36_3B_UR50D-mlp-12
+
+  model2:
+    backbone_model: ProtT5-XL
+    head_model: mlp
+    seed: 7
+    model_dir: data/round2/activity/plm_models/ProtT5-XL-mlp-7
+    model_name: ProtT5-XL-mlp-7
+
+  model3:
+    backbone_model: ProtAlbert
+    head_model: mlp
+    seed: 11
+    model_dir: data/round2/activity/plm_models/ProtAlbert-mlp-11
+    model_name: ProtAlbert-mlp-11
