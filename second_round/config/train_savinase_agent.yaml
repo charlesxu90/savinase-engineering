@@ -18,6 +18,10 @@ task:
             k: 1
         min_val: -5
 
+bonus:
+  bonus_type: none  # two types: ip_free, m2bonus or none
+  bonus_amplitude: 1
+
 template:
   ref_seq_path: data/round2/hotspots/top_1st.fasta
   # ref_seq_path: data/round2/hotspots/top_2nd.fasta

@@ -1,7 +1,26 @@
 # Description: Configuration file for training agent
 task:
-  task_type: activity
-  score_type: weight  # sum, weight, product, only useful for multi-property optimization
+    score_type: weight  # sum, weight, product, only useful for multi-property optimization
+  prop_names: ['activity']
+  fn_config:
+    activity:
+      fn_type: ev_onehot
+      ev_onehot:
+        seq_len: 275
+        predictor:
+          data_path: data/round1/activity
+          predictor_name: ev+onehot
+        transform:
+          trans_type: sigmoid
+          low: -1
+          high: 2
+          params:
+            k: 1      # k is used for sigmoid transformation, defaul = 2
+        min_val: -10
+
+bonus:
+  bonus_type: none  # two types: ip_free, m2bonus or none
+  bonus_amplitude: 1
 
 template:
   ref_seq_path: data/round1/activity/wt.fasta
